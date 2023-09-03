@@ -130,9 +130,16 @@ GO
     
 
 - **Constraints:** Constraints were used to maintain data integrity. For example, the **`Status`** column in the **`Properties`** table has a CHECK constraint to ensure that it only takes 'Available' or 'Not Available' as values.
+````sql
+    CREATE TABLE Properties (
+    PropertyID INT IDENTITY(1,1) PRIMARY KEY,
+    OwnerID INT NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    PropertyType VARCHAR(100) CHECK (PropertyType IN ('House', 'Condo', 'Apartment', 'Townhouse')),
+    Status VARCHAR(100) CHECK (Status IN ('Available', 'Not Available')),
+    FOREIGN KEY (OwnerID) REFERENCES Owners(OwnerID)
+ ````   
     
-    
-    ![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%202.png)
     
 
 - S**tored Procedures and Triggers:** Stored procedures were used to encapsulate logic for data manipulation and ensure data consistency. Triggers were created to automatically update the **`Status`** of a property in the **`Properties`** table whenever a new **`RentalContract`** is added.
