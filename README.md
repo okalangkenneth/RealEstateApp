@@ -144,7 +144,7 @@ GO
 
 - S**tored Procedures and Triggers:** Stored procedures were used to encapsulate logic for data manipulation and ensure data consistency. Triggers were created to automatically update the **`Status`** of a property in the **`Properties`** table whenever a new **`RentalContract`** is added.
     
-   ````sql 
+````sql 
    CREATE TRIGGER trg_update_property_status
    ON RentalContracts
    AFTER INSERT
