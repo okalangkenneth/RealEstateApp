@@ -1,5 +1,21 @@
 # Real Estate Property Management System
 
+## Table of Contents
+* [Introduction](#introduction)
+* [Objective](#objective)
+* [Technologies Used](#technologies-used)
+* [Database Design and Implementation](#database-design-and-implementation)
+* [Entity Framework Integration](#entity-framework-integration)
+* [Security Implementation](#security-implementation)
+* [Transaction Management](#transaction-management)
+* [Reporting](#reporting)
+* [Backup and Recovery Strategy](#backup-and-recovery-strategy)
+* [Challenges and Learnings](#challenges-and-learning)
+* [Conclusion](#conclusion)
+
+
+
+
 ## **Introduction:**
 
 The Real Estate Property Management System is a comprehensive database solution designed for property owners and managers. It handles tasks like managing owners, properties, tenants, rental contracts, maintenance requests, and payments.
