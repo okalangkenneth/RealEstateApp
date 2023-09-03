@@ -38,7 +38,7 @@ SQL Server, .NET, Entity Framework
     - **`Owners`**: This table holds information about property owners including their name, email, and contact number.
     - **`Properties`**: This table holds information about each property including the address, status, and the owner of the property.
       
-````sql
+```sql
 CREATE DATABASE RealEstateDB;
 GO
 
@@ -106,13 +106,14 @@ CREATE TABLE Payments (
     FOREIGN KEY (ContractID) REFERENCES RentalContracts(ContractID)
 );
 GO
+
 ````
 
 
 
-    **Relationships:** Relationships between tables were established to maintain data integrity and provide structure to the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table.
+**Relationships:** Relationships between tables were established to maintain data integrity and provide structure to the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table.
     
-    ![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%201.png)
+![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%201.png)
     
 
 - **Constraints:** Constraints were used to maintain data integrity. For example, the **`Status`** column in the **`Properties`** table has a CHECK constraint to ensure that it only takes 'Available' or 'Not Available' as values.
