@@ -47,64 +47,82 @@ GO
 
 CREATE TABLE Owners (
     OwnerID INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName VARCHAR(100),
-    LastName VARCHAR(100),
-    ContactNumber VARCHAR(15),
-    Email VARCHAR(100)
+    FirstName VARCHAR(100) NOT NULL,
+    LastName VARCHAR(100) NOT NULL,
+    ContactNumber VARCHAR(15) CHECK (ContactNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'),
+    Email VARCHAR(100) NOT NULL
 );
+GO
+
+CREATE INDEX idx_owners_lastname ON Owners(LastName);
 GO
 
 CREATE TABLE Properties (
     PropertyID INT IDENTITY(1,1) PRIMARY KEY,
-    OwnerID INT,
-    Address VARCHAR(255),
-    PropertyType VARCHAR(100),
-    Status VARCHAR(100),
+    OwnerID INT NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    PropertyType VARCHAR(100) CHECK (PropertyType IN ('House', 'Condo', 'Apartment', 'Townhouse')),
+    Status VARCHAR(100) CHECK (Status IN ('Available', 'Not Available')),
     FOREIGN KEY (OwnerID) REFERENCES Owners(OwnerID)
 );
 GO
 
+CREATE INDEX idx_properties_status ON Properties(Status);
+GO
+
 CREATE TABLE Tenants (
     TenantID INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName VARCHAR(100),
-    LastName VARCHAR(100),
-    ContactNumber VARCHAR(15),
-    Email VARCHAR(100)
+    FirstName VARCHAR(100) NOT NULL,
+    LastName VARCHAR(100) NOT NULL,
+    ContactNumber VARCHAR(15) CHECK (ContactNumber LIKE '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'),
+    Email VARCHAR(100) NOT NULL
 );
+GO
+
+CREATE INDEX idx_tenants_lastname ON Tenants(LastName);
 GO
 
 CREATE TABLE RentalContracts (
     ContractID INT IDENTITY(1,1) PRIMARY KEY,
-    PropertyID INT,
-    TenantID INT,
-    StartDate DATE,
-    EndDate DATE,
-    RentAmount DECIMAL(9,2),
-    DepositAmount DECIMAL(9,2),
+    PropertyID INT NOT NULL,
+    TenantID INT NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    RentAmount DECIMAL(9,2) CHECK (RentAmount > 0),
+    DepositAmount DECIMAL(9,2) CHECK (DepositAmount >= 0),
     FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID),
     FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 );
+GO
+
+CREATE INDEX idx_contracts_startdate ON RentalContracts(StartDate);
 GO
 
 CREATE TABLE MaintenanceRequests (
     RequestID INT IDENTITY(1,1) PRIMARY KEY,
-    PropertyID INT,
-    TenantID INT,
-    RequestDate DATE,
-    IssueDescription VARCHAR(MAX),
-    Status VARCHAR(100),
+    PropertyID INT NOT NULL,
+    TenantID INT NOT NULL,
+    RequestDate DATE NOT NULL,
+    IssueDescription VARCHAR(MAX) NOT NULL,
+    Status VARCHAR(100) CHECK (Status IN ('Open', 'In Progress', 'Closed')),
     FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID),
     FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
 );
 GO
 
+CREATE INDEX idx_requests_status ON MaintenanceRequests(Status);
+GO
+
 CREATE TABLE Payments (
     PaymentID INT IDENTITY(1,1) PRIMARY KEY,
-    ContractID INT,
-    PaymentDate DATE,
-    Amount DECIMAL(9,2),
+    ContractID INT NOT NULL,
+    PaymentDate DATE NOT NULL,
+    Amount DECIMAL(9,2) CHECK (Amount > 0),
     FOREIGN KEY (ContractID) REFERENCES RentalContracts(ContractID)
 );
+GO
+
+CREATE INDEX idx_payments_paymentdate ON Payments(PaymentDate);
 GO
 
 ````
