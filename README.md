@@ -144,8 +144,21 @@ GO
 
 - S**tored Procedures and Triggers:** Stored procedures were used to encapsulate logic for data manipulation and ensure data consistency. Triggers were created to automatically update the **`Status`** of a property in the **`Properties`** table whenever a new **`RentalContract`** is added.
     
-    
-    ![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%203.png)
+   ````sql 
+   CREATE TRIGGER trg_update_property_status
+   ON RentalContracts
+   AFTER INSERT
+  AS
+  BEGIN
+    DECLARE @PropertyID INT;
+
+    SELECT @PropertyID = PropertyID FROM inserted;
+
+    UPDATE Properties
+    SET Status = 'Unavailable'
+    WHERE PropertyID = @PropertyID;
+  END;
+````
     
 
 ## **Entity Framework Integration:**
