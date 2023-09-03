@@ -32,7 +32,7 @@ SQL Server, .NET, Entity Framework
 
 - **Database Schema:** The database for this system was designed to support multiple entities including Owners, Properties, Tenants, Rental Contracts, Maintenance Requests, and Payments. Each of these entities is represented as a table in the database. An Entity Relationship (ER) diagram was used to visually represent the structure of the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table. 
 
-![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled.png)
+![Untitled](https://github.com/okalangkenneth/RealEstateApp/blob/master/ER_RealEstate.png)
 
 - **Tables:** Several tables were created to store different types of data, for example:
     - **`Owners`**: This table holds information about property owners including their name, email, and contact number.
