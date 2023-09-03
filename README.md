@@ -10,7 +10,7 @@
 * [Transaction Management](#transaction-management)
 * [Reporting](#reporting)
 * [Backup and Recovery Strategy](#backup-and-recovery-strategy)
-* [Challenges and Learnings](#challenges-and-learning)
+* [Challenges and Learnings](#challenges-and-learnings)
 * [Conclusion](#conclusion)
 
 
