@@ -30,7 +30,7 @@ SQL Server, .NET, Entity Framework
 
 ## **Database Design and Implementation:**
 
-- **Database Schema:** The database for this system was designed to support multiple entities including Owners, Properties, Tenants, Rental Contracts, Maintenance Requests, and Payments. Each of these entities is represented as a table in the database. An Entity Relationship (ER) diagram was used to visually represent the structure of the database.
+- **Database Schema:** The database for this system was designed to support multiple entities including Owners, Properties, Tenants, Rental Contracts, Maintenance Requests, and Payments. Each of these entities is represented as a table in the database. An Entity Relationship (ER) diagram was used to visually represent the structure of the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table. 
 
 ![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled.png)
 
@@ -109,11 +109,6 @@ GO
 
 ````
 
-
-
-**Relationships:** Relationships between tables were established to maintain data integrity and provide structure to the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table.
-    
-![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%201.png)
     
 
 - **Constraints:** Constraints were used to maintain data integrity. For example, the **`Status`** column in the **`Properties`** table has a CHECK constraint to ensure that it only takes 'Available' or 'Not Available' as values.
