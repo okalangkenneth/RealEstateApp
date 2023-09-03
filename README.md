@@ -37,7 +37,79 @@ SQL Server, .NET, Entity Framework
 - **Tables:** Several tables were created to store different types of data, for example:
     - **`Owners`**: This table holds information about property owners including their name, email, and contact number.
     - **`Properties`**: This table holds information about each property including the address, status, and the owner of the property.
-    
+      
+````sql
+CREATE DATABASE RealEstateDB;
+GO
+
+USE RealEstateDB;
+GO
+
+CREATE TABLE Owners (
+    OwnerID INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    ContactNumber VARCHAR(15),
+    Email VARCHAR(100)
+);
+GO
+
+CREATE TABLE Properties (
+    PropertyID INT IDENTITY(1,1) PRIMARY KEY,
+    OwnerID INT,
+    Address VARCHAR(255),
+    PropertyType VARCHAR(100),
+    Status VARCHAR(100),
+    FOREIGN KEY (OwnerID) REFERENCES Owners(OwnerID)
+);
+GO
+
+CREATE TABLE Tenants (
+    TenantID INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    ContactNumber VARCHAR(15),
+    Email VARCHAR(100)
+);
+GO
+
+CREATE TABLE RentalContracts (
+    ContractID INT IDENTITY(1,1) PRIMARY KEY,
+    PropertyID INT,
+    TenantID INT,
+    StartDate DATE,
+    EndDate DATE,
+    RentAmount DECIMAL(9,2),
+    DepositAmount DECIMAL(9,2),
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID),
+    FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
+);
+GO
+
+CREATE TABLE MaintenanceRequests (
+    RequestID INT IDENTITY(1,1) PRIMARY KEY,
+    PropertyID INT,
+    TenantID INT,
+    RequestDate DATE,
+    IssueDescription VARCHAR(MAX),
+    Status VARCHAR(100),
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID),
+    FOREIGN KEY (TenantID) REFERENCES Tenants(TenantID)
+);
+GO
+
+CREATE TABLE Payments (
+    PaymentID INT IDENTITY(1,1) PRIMARY KEY,
+    ContractID INT,
+    PaymentDate DATE,
+    Amount DECIMAL(9,2),
+    FOREIGN KEY (ContractID) REFERENCES RentalContracts(ContractID)
+);
+GO
+````
+
+
+
     **Relationships:** Relationships between tables were established to maintain data integrity and provide structure to the database. For example, each property in the **`Properties`** table is associated with an owner in the **`Owners`** table.
     
     ![Untitled](Real%20Estate%20Property%20Management%20System%20460c370ec9da405598dc35eb8147251e/Untitled%201.png)
