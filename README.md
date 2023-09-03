@@ -440,6 +440,3 @@ In terms of future plans, there is always scope for extending the project. Some 
 
 In conclusion, although the 'Real Estate Property Management System' project is currently complete, it offers a strong foundation that can be built upon for future enhancements. This project not only provided a practical application of SQL programming, database design, and Entity Framework but also demonstrated how a well-designed database system can effectively manage and organize complex real-world data.
 
-## **Gallery:**
-
-Include screenshots or video clips of the working application, database diagrams, and any other visuals relevant to the project.
